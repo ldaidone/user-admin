@@ -8,29 +8,26 @@ import { AppComponent }         from './app.component';
 import { AppRoutingModule }     from './app.routing';
 
 import { AuthService }          from './shared/auth.service';
-import { UsersService }         from './shared/users.service';
 import { UserResolve }          from './shared/user-resolve.service';
 
 import { LoginComponent }       from './login/login.component';
 import { HomeComponent }        from './home/home.component';
-import { UserListComponent }    from './user-list/user-list.component';
-import { UserEditComponent }    from './user-edit/user-edit.component';
+
 import { HeaderComponent }      from './header/header.component';
 
 import { AlertModule, 
-         ModalModule }          from 'ng2-bootstrap';
+         ModalModule,
+         TabsModule }          from 'ngx-bootstrap';
 
-import { EqualityValidator }    from './shared/equality-validator.directive';
+import { UserAdminModule }      from '@erdiko/ng-user-admin';
+import { UsersService }         from './shared/users.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent,
-    UserEditComponent,
     HomeComponent,
     HeaderComponent,
-    LoginComponent,
-    EqualityValidator
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -40,12 +37,15 @@ import { EqualityValidator }    from './shared/equality-validator.directive';
     AppRoutingModule,
 
     AlertModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    TabsModule.forRoot(),
+
+    UserAdminModule.forRoot()
   ],
   providers: [
     AuthService,
-    UsersService,
-    UserResolve
+    UserResolve,
+    UsersService
   ],
   bootstrap: [AppComponent]
 })

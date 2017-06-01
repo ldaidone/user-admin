@@ -1,5 +1,5 @@
-import { Component, OnInit }                    from '@angular/core';
-import { Router, ActivatedRoute }               from '@angular/router';
+import { Component, OnInit, ViewChild }                    from '@angular/core';
+import { Router }                               from '@angular/router';
 import { FormBuilder, FormGroup, Validators }   from '@angular/forms';
 
 import { AuthService }   from '../shared/auth.service';
@@ -17,12 +17,11 @@ export class LoginComponent implements OnInit {
 
     private loginForm: FormGroup;
 
-    private error: string;
-    private msg: string;
+    public loggedOut: string;
+    public error: string;
 
     constructor(
            private authService: AuthService,
-           private route: ActivatedRoute,
            private router: Router,
            private fb: FormBuilder) { 
 
@@ -48,22 +47,21 @@ export class LoginComponent implements OnInit {
 
         this.wait = true;
 
-        this.msg = this.error = '';
-
         if(valid) {
 
             this.authService.login(value)
                 .subscribe(result => {
                     if (result === true) {
                         this.router.navigate(['/']);
+                        //this.messageService.sendMessage("login", "success");
                     } else {
-                        this.error = 'Username or Password is invalid';
+                        //this.messageService.sendMessage("login", "error");
                         this.wait = false;
                     }
-                    }, err => {
-                        this.error = 'An error occurred. Please try again.';
-                        this.wait = false;
-                    });
+                }, err => {
+                    //this.messageService.sendMessage("login", "no-password");
+                    this.wait = false;
+                });
 
         }
     }

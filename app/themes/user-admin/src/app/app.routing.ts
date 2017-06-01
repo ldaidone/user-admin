@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent }       from './login/login.component';
 import { HomeComponent }        from './home/home.component';
-import { UserListComponent }    from './user-list/user-list.component';
-import { UserEditComponent }    from './user-edit/user-edit.component';
 
 import { AuthGuard }            from './shared/auth.guard';
 
 import { UserResolve }          from './shared/user-resolve.service';
+
+import { UserListComponent }        from '@erdiko/ng-user-admin';
+import { UsersEventLogComponent }   from '@erdiko/ng-user-admin';
+import { UserEditComponent }        from '@erdiko/ng-user-admin';
 
 // clang-format off
 const appRoutes = [
@@ -18,6 +20,13 @@ const appRoutes = [
             AuthGuard
         ],
         component: UserListComponent
+    },
+    {
+        path: 'events',
+        canActivate: [
+            AuthGuard
+        ],
+        component: UsersEventLogComponent
     },
     {
         path: 'user',
@@ -58,7 +67,7 @@ const appRoutes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      {useHash: false}
+      {useHash: true}
     )
   ],
   exports: [

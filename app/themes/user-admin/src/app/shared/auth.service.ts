@@ -15,6 +15,8 @@ export class AuthService {
 
     public token: string;
 
+    public loggedOut: any;
+
     /**
      *
      *
@@ -50,6 +52,8 @@ export class AuthService {
 
         let url = this._baseUrl + this.loginUrl;
 
+        this.loggedOut = null;
+
         return this.http.post(url, body, options)
                    .map((response: Response) => {
                        // login successful if there's a jwt token in the response
@@ -62,9 +66,11 @@ export class AuthService {
                            localStorage.setItem('currentUser', JSON.stringify({ token: token }));
 
                            // return true to indicate successful login
+                           //this.messageService.sendMessage("login", "success");
                            return true;
                        } else {
                            // return false to indicate failed login
+                           //this.messageService.sendMessage("login", "no-password");
                            return false;
                        }
                    })
@@ -81,6 +87,8 @@ export class AuthService {
         // clear token remove user from local storage to log user out
         this.token = null;
         localStorage.removeItem('currentUser');
+
+        //this.messageService.sendMessage("logout", "success");
     }
 
 }
