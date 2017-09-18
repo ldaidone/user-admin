@@ -17,7 +17,8 @@
         "erdiko/authenticate": "dev-master",
         "erdiko/authorize": "dev-master",
         "erdiko/users": "dev-master",
-        "erdiko/session": "dev-master"
+        "erdiko/session": "dev-master",
+        "robmorgan/phinx": "^0.8.1"
     },
     "config": {
         "vendor-dir": "vendor",

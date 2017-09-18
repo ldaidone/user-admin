@@ -26,6 +26,8 @@ services:
     volumes_from: [data]
     extra_hosts:
       - "docker.local:172.17.0.1"
+    ports:
+      - "8445:8445"
 
   db:
     extends:

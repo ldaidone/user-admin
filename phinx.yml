@@ -1,0 +1,20 @@
+# This config file is for phinx out of the box
+# if you use user-admin migration shell script the config file is "user-admin/app/config/shared/phinx.php"
+paths:
+    migrations: %%PHINX_CONFIG_DIR%%/db/migrations
+    seeds: %%PHINX_CONFIG_DIR%%/db/seeds
+
+environments:
+    default_migration_table: phinxlog
+    default_database: development
+
+    development:
+        adapter: mysql
+        host: erdiko_users_db
+        name: users
+        user: root
+        pass: psItPs16
+        port: 3306
+        charset: utf8
+
+version_order: creation
